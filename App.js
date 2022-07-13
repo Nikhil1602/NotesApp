@@ -1,20 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { useState, createContext } from "react";
+import { Provider } from "react-redux";
+import { LogBox } from "react-native";
+import Navigation from "./components/Navigation";
+import store from "./store";
+
+LogBox.ignoreAllLogs();
+export const Theme = createContext();
 
 export default function App() {
+  const [isDark, setDark] = useState(false);
+  const [file, setFile] = useState([]);
+  const [folder, setFolder] = useState([]);
+  const value = { isDark, setDark, file, setFile, folder, setFolder };
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Provider store={store}>
+      <Theme.Provider value={value}>
+        <StatusBar style={isDark ? "light" : "dark"} />
+        <Navigation />
+      </Theme.Provider>
+    </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
