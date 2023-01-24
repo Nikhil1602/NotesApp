@@ -1,12 +1,14 @@
 import { Platform, ScrollView } from "react-native";
-import { SafeAreaView, View } from "react-native";
-import { RichEditor, RichToolbar } from "react-native-pell-rich-editor";
+import { SafeAreaView, View, Text } from "react-native";
+// import { RichEditor, RichToolbar } from "react-native-pell-rich-editor";
+import RichToolbar from "./RichToolbar";
+import RichTextEditor from "./RichEditor";
 import { toolbarIcons } from "../utils/functions";
 import { DialogBoxForBGColor, DialogBoxForCode } from "./DialogBox";
 import { DialogBoxForFontColor, DialogBoxForLink } from "./DialogBox";
 import { DialogBoxForFontSize, DialogBoxForFont } from "./DialogBox";
 import { DialogBoxForQuote, DialogBoxForTable } from "./DialogBox";
-import { useRef, useState, useContext } from "react";
+import { useRef, useState, useContext, createRef } from "react";
 import { DialogBoxForVideo } from "./DialogBox";
 import { appFile, ShowDialog } from "../utils/container";
 import { Theme } from "../App";
@@ -15,15 +17,22 @@ import { setActions } from "../utils/container";
 import * as ImagePicker from "expo-image-picker";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addFile, setFileContent, setId } from "../reducers/appData";
+import { setId, updateContent } from "../reducers/appData";
+import { TextInput } from "react-native-paper";
+import { memo } from "react";
 
-export default function Editor({ file }) {
-  const richText = useRef(file ? file.content : null);
+const Editor = ({ file, navigation }) => {
+  const richText = useRef();
   const { isDark } = useContext(Theme);
   const [show, setShow] = useState(ShowDialog);
-  const [content, setContent] = useState(file ? file.content : "");
-  const dispatch = useDispatch();
   const data = useSelector((state) => state.app.files);
+  const [content, setContent] = useState(file ? file.content : "");
+  const [update, setUpdate] = useState(true);
+  const dispatch = useDispatch();
+
+  () => {
+    richText.current?.setInitialContent(file ? file.content : "");
+  };
 
   const theme = {
     view: {
@@ -68,11 +77,13 @@ export default function Editor({ file }) {
   };
 
   const handleEditorChange = (text) => {
-    // setContent(text);
-    // console.log(data);
-    file.content = text;
-    data.splice(file.id - 1, 1, file);
-    console.log(data);
+    setContent(text);
+
+    update && dispatch(setId(file.id - 1));
+    update && setUpdate(false);
+
+    dispatch(updateContent(text));
+    console.log(text);
   };
 
   const handleImage = async () => {
@@ -103,13 +114,14 @@ export default function Editor({ file }) {
         {show.font && <DialogBoxForFont {...props.Dialog} />}
         <ScrollView>
           <View style={theme.view} behavior={checkBehavior}>
-            <RichEditor
+            <RichTextEditor
               initialHeight={1000}
               style={theme.page}
               editorStyle={theme.editor}
               ref={richText}
               onChange={handleEditorChange}
-              initialContentHTML={content}
+              // initialContentHTML={file ? file.id : null}
+              initialContentHTML={file ? file.content : ""}
             />
           </View>
         </ScrollView>
@@ -127,4 +139,6 @@ export default function Editor({ file }) {
       </SafeAreaView>
     </>
   );
-}
+};
+
+export default Editor;

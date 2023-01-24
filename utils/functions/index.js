@@ -4,7 +4,7 @@ import { Avatar } from "react-native-paper";
 import { Ionicons, MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
 import { useSelector } from "react-redux";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { actions } from "react-native-pell-rich-editor";
+import { actions } from "../container";
 
 import * as DocumentPicker from "expo-document-picker";
 import * as FileSystem from "expo-file-system";
@@ -13,6 +13,7 @@ import * as IntentLauncher from "expo-intent-launcher";
 import * as Permissions from "expo-permissions";
 import { addFile } from "../../reducers/appData";
 import { appFile } from "../container";
+let id = 1;
 
 export const drawerStyle = (isDark, navigation) => {
   const image = useSelector((state) => state.userInfo.image);
@@ -44,9 +45,11 @@ export const drawerStyle = (isDark, navigation) => {
     },
     drawerPosition: "right",
     headerLeft: () => (
-      <View style={[avatarContainer, { borderColor: ToggleTheme.color }]}>
+      <Pressable
+        onPress={() => navigation.navigate("Profile")}
+        style={[avatarContainer, { borderColor: ToggleTheme.color }]}>
         {image ? setImage() : defaultImage()}
-      </View>
+      </Pressable>
     ),
     headerRight: () => (
       <Pressable
@@ -126,7 +129,7 @@ export const drawerEditStyle = (isDark, navigation) => {
     drawerPosition: "right",
     headerLeft: () => (
       <Pressable
-        onPress={() => navigation.navigate("Home")}
+        onPress={() => navigation.goBack()}
         android_ripple={{ color: ToggleTheme.color }}>
         <MaterialIcons
           name="keyboard-arrow-left"
@@ -343,28 +346,21 @@ const documentOpener = async () => {
 };
 
 const createFile = (navigation, file, dispatch) => {
-  let id = file.length;
+  // let id = file.length;
   let date = new Date();
   let curDate = formatDate(date);
   let curTime = formatTime(date);
 
   dispatch(
     addFile({
-      id: id + 1,
-      name: `Untitled-${id + 1}`,
-      content: "",
+      id: id,
+      name: `Untitled-${id}`,
+      content: ``,
       date: curDate,
       time: curTime,
     })
   );
-
-  appFile.push({
-    id: id + 1,
-    name: `Untitled-${id + 1}`,
-    content: "",
-    date: curDate,
-    time: curTime,
-  });
+  id++;
 
   navigation.navigate("EditScreenInitialize");
   navigation.closeDrawer();

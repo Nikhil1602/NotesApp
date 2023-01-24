@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="19273b11-f227-486a-a7e3-9cfb4da52519" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Editor.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Editor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/HomeTabs.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/HomeTabs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Navigation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reducers/appData.js" beforeDir="false" afterPath="$PROJECT_DIR$/reducers/appData.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/EditScreen.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/screens/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/functions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/functions/index.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2EfUnduv5tVtK57PN1bvOVOQJwZ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="19273b11-f227-486a-a7e3-9cfb4da52519" name="Default Changelist" comment="" />
+      <created>1662986320203</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1662986320203</updated>
+    </task>
+    <servers />
+  </component>
+</project>

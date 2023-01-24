@@ -23,3 +23,57 @@ export default function App() {
     </Provider>
   );
 }
+
+// import { StateProvider, store } from "./store.js";
+// import { Button, View, Text } from "react-native";
+// import { useState, useContext } from "react";
+
+// const Form = () => {
+//   const globalState = useContext(store);
+//   const { dispatch } = globalState;
+//   const [key, setKey] = useState(1);
+
+//   const handleFile = () => {
+//     dispatch({
+//       type: "ADD_FILE",
+//       payload: {
+//         id: key,
+//         name: `Untitled-${key}`,
+//         content: "",
+//         date: "20/03/2022",
+//         time: "03:23 PM",
+//       },
+//     });
+//     setKey(key + 1);
+//     console.log(globalState.state.files);
+//   };
+
+//   const removeFile = () => {
+//     dispatch({ type: "REMOVE_FILE", payload: key });
+//     setKey(key - 1);
+//     console.log(globalState.state.files);
+//   };
+
+//   const handleTheme = () => {
+//     dispatch({ type: "TOGGLE_THEME" });
+//     console.log(globalState.state.theme);
+//   };
+//   return (
+//     <View style={{ marginTop: 100 }}>
+//       <Button title="Add File" onPress={handleFile} />
+//       <Button title="Remove File" onPress={removeFile} />
+//       <Button title="Toggle Theme" onPress={handleTheme} />
+//       {globalState.state.files.map((item, index) => {
+//         return <Text key={index}>{item.name}</Text>;
+//       })}
+//     </View>
+//   );
+// };
+
+// export default function App() {
+//   return (
+//     <StateProvider>
+//       <Form />
+//     </StateProvider>
+//   );
+// }

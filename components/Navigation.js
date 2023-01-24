@@ -12,7 +12,8 @@ import { useContext, useState } from "react";
 import Home from "../screens/Home";
 import Profile from "../screens/Profile";
 import Settings from "../screens/Settings";
-import { InitialContent, FetchContent } from "../screens/EditScreen";
+import InitialContent from "../screens/InitialContent";
+import FetchContent from "../screens/FetchContent";
 import COLORS from "../assets/theme";
 import { Theme } from "../App";
 import { useSelector, useDispatch } from "react-redux";
@@ -115,45 +116,69 @@ const CustomDrawerEdit = ({ navigation, fileName, setFileName }) => {
   );
 };
 
-const DrawerEditInitialize = ({ navigation }) => {
+// const DrawerEditInitialize = ({ navigation }) => {
+//   const { isDark } = useContext(Theme);
+//   const [fileName, setFileName] = useState(`Untitled`);
+//   const Drawer = createDrawerNavigator();
+
+//   return (
+//     <Drawer.Navigator
+//       drawerContent={(props) => (
+//         <CustomDrawerEdit
+//           {...props}
+//           fileName={fileName}
+//           setFileName={setFileName}
+//         />
+//       )}
+//       screenOptions={({ navigation }) => drawerEditStyle(isDark, navigation)}>
+//       <Drawer.Screen name={fileName} component={InitialContent} />
+//     </Drawer.Navigator>
+//   );
+// };
+
+const StackEditInitialize = ({ navigation }) => {
   const { isDark } = useContext(Theme);
-  const [fileName, setFileName] = useState("Untitled");
-  const Drawer = createDrawerNavigator();
+  const [fileName, setFileName] = useState(`Untitled`);
+  const Stack = createStackNavigator();
 
   return (
-    <Drawer.Navigator
-      drawerContent={(props) => (
-        <CustomDrawerEdit
-          {...props}
-          fileName={fileName}
-          setFileName={setFileName}
-        />
-      )}
-      screenOptions={({ navigation }) => drawerEditStyle(isDark, navigation)}>
-      <Drawer.Screen name={fileName} component={InitialContent} />
-    </Drawer.Navigator>
+    <Stack.Navigator screenOptions={stackStyle(isDark, navigation, "Home")}>
+      <Stack.Screen name={fileName} component={InitialContent} />
+    </Stack.Navigator>
   );
 };
 
-const DrawerEditFetch = ({ navigation }) => {
+const StackEditFetch = ({ navigation }) => {
   const { isDark } = useContext(Theme);
-  const [fileName, setFileName] = useState("Untitled");
-  const Drawer = createDrawerNavigator();
+  const [fileName, setFileName] = useState(`Untitled`);
+  const Stack = createStackNavigator();
 
   return (
-    <Drawer.Navigator
-      drawerContent={(props) => (
-        <CustomDrawerEdit
-          {...props}
-          fileName={fileName}
-          setFileName={setFileName}
-        />
-      )}
-      screenOptions={({ navigation }) => drawerEditStyle(isDark, navigation)}>
-      <Drawer.Screen name={fileName} component={FetchContent} />
-    </Drawer.Navigator>
+    <Stack.Navigator screenOptions={stackStyle(isDark, navigation, "Home")}>
+      <Stack.Screen name={fileName} component={FetchContent} />
+    </Stack.Navigator>
   );
 };
+
+// const DrawerEditFetch = ({ navigation }) => {
+//   const { isDark } = useContext(Theme);
+//   const [fileName, setFileName] = useState("Untitled");
+//   const Drawer = createDrawerNavigator();
+
+//   return (
+//     <Drawer.Navigator
+//       drawerContent={(props) => (
+//         <CustomDrawerEdit
+//           {...props}
+//           fileName={fileName}
+//           setFileName={setFileName}
+//         />
+//       )}
+//       screenOptions={({ navigation }) => drawerEditStyle(isDark, navigation)}>
+//       <Drawer.Screen name={fileName} component={FetchContent} />
+//     </Drawer.Navigator>
+//   );
+// };
 
 const Item = ({ onPress, item, ToggleTheme }) => {
   return (
@@ -232,12 +257,14 @@ const Navigation = () => {
         <Drawer.Screen
           options={{ headerShown: false }}
           name="EditScreenInitialize"
-          component={DrawerEditInitialize}
+          // component={DrawerEditInitialize}
+          component={StackEditInitialize}
         />
         <Drawer.Screen
           options={{ headerShown: false }}
           name="EditScreenFetch"
-          component={DrawerEditFetch}
+          // component={DrawerEditFetch}
+          component={StackEditFetch}
         />
         <Drawer.Screen
           options={{ headerShown: false }}

@@ -81,7 +81,6 @@ export default function Home({ navigation }) {
             <HomeTabs id={index} item={item} />
           </Pressable>
         );
-        // return <HomeTabs navigation={navigation} key={index} item={item} />;
       })}
     </ScrollView>
   );

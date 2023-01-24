@@ -38,6 +38,9 @@ const appReducer = createSlice({
     setId: (state, actions) => {
       state.selectedId = actions.payload;
     },
+    updateContent: (state, actions) => {
+      state.files[state.selectedId].content = actions.payload;
+    },
   },
 });
 
@@ -45,4 +48,5 @@ export const { setAppLock, unsetAppLock } = appReducer.actions;
 export const { addFile, addFolder, setId } = appReducer.actions;
 export const { removeFile, removeFolder } = appReducer.actions;
 export const { deleteAllFiles, deleteAllFolders } = appReducer.actions;
+export const { updateContent } = appReducer.actions;
 export default appReducer.reducer;

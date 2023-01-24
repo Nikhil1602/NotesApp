@@ -18,7 +18,7 @@ export const EditMenu = ({ ThemeToggler, id }) => {
 
   const deleteData = () => {
     dispatch(removeFile(id));
-    appFile.slice(id, 1);
+    // appFile.slice(id, 1);
     hideMenu();
   };
 
